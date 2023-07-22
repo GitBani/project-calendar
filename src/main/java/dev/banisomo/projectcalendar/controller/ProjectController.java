@@ -23,16 +23,26 @@ public class ProjectController {
         return repository.findAll();
     }
 
-    // Create Read Update Delete - filter | paging and sorting
     @GetMapping("/{id}")
     public Project findById(@PathVariable Integer id) {
         return repository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Project not found"));
     }
 
+    // Create Read Update Delete - filter | paging and sorting
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
     public void create(@RequestBody Project project) {
+        repository.save(project);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PutMapping("/{id}")
+    public void update(@RequestBody Project project, @PathVariable Integer id) {
+        if (!repository.existsById(id)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Project not found");
+        }
         repository.save(project);
     }
 }

@@ -24,11 +24,16 @@ public class ProjectCollectionRepository {
     }
 
     public Optional<Project> findById(Integer id) {
-        return projectList.stream().filter(c -> c.id().equals(id)).findFirst();
+        return projectList.stream().filter(p -> p.id().equals(id)).findFirst();
     }
 
     public void save(Project project) {
+        projectList.removeIf(p -> p.id().equals(project.id()));
         projectList.add(project);
+    }
+
+    public boolean existsById(Integer id) {
+        return projectList.stream().filter(c -> c.id().equals(id)).count() == 1;
     }
 
     @PostConstruct

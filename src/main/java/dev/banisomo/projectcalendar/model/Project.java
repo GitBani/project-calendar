@@ -10,6 +10,6 @@ public record Project(
         Type type,
         LocalDateTime dateCreated,
         LocalDateTime dateUpdated,
-        String repoUrl
+        String url
 ) {
 }
