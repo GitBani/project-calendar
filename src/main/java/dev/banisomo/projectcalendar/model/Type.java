@@ -13,5 +13,6 @@ public enum Type {
     AI,
     GRAPHICS,
     NETWORK,
-    SECURITY
+    SECURITY,
+    BLOG
 }
