@@ -23,18 +23,18 @@ public class ProjectController {
         return repository.findAll();
     }
 
-    @GetMapping("/{id}")
-    public Project findById(@PathVariable Integer id) {
-        return repository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Project not found"));
-    }
-
     // Create Read Update Delete - filter | paging and sorting
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
     public void create(@RequestBody Project project) {
         repository.save(project);
+    }
+
+    @GetMapping("/{id}")
+    public Project findById(@PathVariable Integer id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Project not found"));
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -44,5 +44,11 @@ public class ProjectController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Project not found");
         }
         repository.save(project);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Integer id) {
+        repository.delete(id);
     }
 }

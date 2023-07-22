@@ -36,6 +36,10 @@ public class ProjectCollectionRepository {
         return projectList.stream().filter(c -> c.id().equals(id)).count() == 1;
     }
 
+    public void delete(Integer id) {
+        projectList.removeIf(p -> p.id().equals(id));
+    }
+
     @PostConstruct
     private void init() {
         Project project = new Project(1,
