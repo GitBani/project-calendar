@@ -1,6 +1,6 @@
 package dev.banisomo.projectcalendar.controller;
 
-import dev.banisomo.projectcalendar.Repository.ProjectCollectionRepository;
+import dev.banisomo.projectcalendar.repository.ProjectCollectionRepository;
 import dev.banisomo.projectcalendar.model.Project;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

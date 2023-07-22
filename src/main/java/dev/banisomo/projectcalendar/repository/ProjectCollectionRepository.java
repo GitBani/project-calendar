@@ -1,4 +1,4 @@
-package dev.banisomo.projectcalendar.Repository;
+package dev.banisomo.projectcalendar.repository;
 
 import dev.banisomo.projectcalendar.model.Project;
 import dev.banisomo.projectcalendar.model.Status;
