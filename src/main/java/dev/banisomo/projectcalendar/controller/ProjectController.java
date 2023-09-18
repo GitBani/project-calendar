@@ -32,14 +32,14 @@ public class ProjectController {
     }
 
     @GetMapping("/{id}")
-    public Project findById(@PathVariable Integer id) {
+    public Project findById(@PathVariable Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Project not found"));
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{id}")
-    public void update(@RequestBody Project project, @PathVariable Integer id) {
+    public void update(@RequestBody Project project, @PathVariable Long id) {
         if (!repository.existsById(id)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Project not found");
         }
@@ -48,7 +48,8 @@ public class ProjectController {
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Integer id) {
-        repository.delete(id);
+    public void delete(@PathVariable Long id) {
+        repository.deleteById(id);
     }
+
 }
