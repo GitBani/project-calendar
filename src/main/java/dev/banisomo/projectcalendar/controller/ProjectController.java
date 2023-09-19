@@ -20,7 +20,7 @@ public class ProjectController {
 
     @GetMapping("")
     public List<Project> findAll() {
-        return repository.findAll();
+        return (List<Project>) repository.findAll();
     }
 
     // Create Read Update Delete - filter | paging and sorting
@@ -32,14 +32,14 @@ public class ProjectController {
     }
 
     @GetMapping("/{id}")
-    public Project findById(@PathVariable Long id) {
+    public Project findById(@PathVariable String id) {
         return repository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Project not found"));
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{id}")
-    public void update(@RequestBody Project project, @PathVariable Long id) {
+    public void update(@RequestBody Project project, @PathVariable String id) {
         if (!repository.existsById(id)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Project not found");
         }
@@ -48,7 +48,7 @@ public class ProjectController {
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
+    public void delete(@PathVariable String id) {
         repository.deleteById(id);
     }
 
